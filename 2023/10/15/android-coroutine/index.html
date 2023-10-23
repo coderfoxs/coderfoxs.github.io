@@ -13,7 +13,7 @@
 
 
 
-<title>Hello World | Ethan</title>
+<title>Android-携程 | Ethan</title>
 
 
 
@@ -188,7 +188,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">Android-携程</h1>
             
                 <div class="post-meta">
                     
@@ -204,7 +204,7 @@
                         <span class="post-category">
                     Category:
                             
-                                <a href="/category/other/">other</a>
+                                <a href="/category/android/">android</a>
                             
                         </span>
                     
@@ -213,8 +213,14 @@
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <h2 id="协程的基本用法"><a href="#协程的基本用法" class="headerlink" title="协程的基本用法"></a>协程的基本用法</h2><p>Kotlin并没有将协程纳入标准库的API当中，而是依赖库的形式提供的。所以如果我们想要使用协程功能，需要现在app/build.gradle文件当中添加如下依赖库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">&quot;org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2&quot;</span></span><br><span class="line">implementation <span class="string">&quot;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="开启携程"><a href="#开启携程" class="headerlink" title="开启携程"></a>开启携程</h2><p>最简单的方式就是使用Global.launch函数，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fun <span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">    GlobalScope.launch&#123;</span><br><span class="line">        println(<span class="string">&quot;codes run in coroutine scope&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
@@ -240,7 +246,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2023/10/15/hello-world/">http://example.com/2023/10/15/hello-world/</a></span>
+                        <span><a href="http://example.com/2023/10/15/android-coroutine/">http://example.com/2023/10/15/android-coroutine/</a></span>
                     </p>
                 
                 
@@ -273,8 +279,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/15/android-coroutine/">Android-携程</a>
             
+            <a class="next" rel="next" href="/2023/10/15/hello-world/">Hello World</a>
             
         </section>
 
