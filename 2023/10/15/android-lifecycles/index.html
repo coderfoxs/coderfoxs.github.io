@@ -13,7 +13,7 @@
 
 
 
-<title>Java工程升级Kotlin | Ethan</title>
+<title>Lifecycles | Ethan</title>
 
 
 
@@ -188,7 +188,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Java工程升级Kotlin</h1>
+            <h1 class="post-title">Lifecycles</h1>
             
                 <div class="post-meta">
                     
@@ -213,17 +213,11 @@
         </header>
 
         <div class="post-content">
-            <h2 id="一、添加kotlin插件"><a href="#一、添加kotlin插件" class="headerlink" title="一、添加kotlin插件"></a>一、添加kotlin插件</h2><p>工程根目录gradle文件下配置如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    //第一点</span><br><span class="line">    ext.kotlin_version = <span class="string">&quot;1.5.10&quot;</span></span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">        google()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath <span class="string">&#x27;com.android.tools.build:gradle:4.2.2&#x27;</span></span><br><span class="line">        //第二点</span><br><span class="line">        classpath <span class="string">&quot;org.jetbrains.kotlin:kotlin-gradle-plugin:<span class="variable">$kotlin_version</span>&quot;</span></span><br><span class="line">        //classpath <span class="string">&#x27;com.github.dcendents:android-maven-gradle-plugin:2.1&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意以上两点<br>ext.kotlin_version = “1.5.10” 的版本号1.5.10是从哪里带的：打开Android Studio ，顶部导航栏Tools ，Kotlin ，Configure Kotlin Plugin Updates<br>注意：检查kotlin插件版本并更新到最新版本，然后与项目中配置的kotlin版本保持一致。</p>
-<h2 id="二、添加应用目录插件"><a href="#二、添加应用目录插件" class="headerlink" title="二、添加应用目录插件"></a>二、添加应用目录插件</h2><p>打开应用目录的gradle文件<br>添加一下两点</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">&#x27;com.android.application&#x27;</span></span><br><span class="line">apply plugin: <span class="string">&#x27;kotlin-android&#x27;</span>//加上</span><br><span class="line">apply plugin: <span class="string">&#x27;kotlin-android-extensions&#x27;</span>//加上</span><br></pre></td></tr></table></figure>
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>编写Android程序的时候，会经常需要感应Activity生命周期的情况，去做逻辑控制，比如Activity创建的时候生成资源，Activity销毁的时候去做资源释放。<br>如何在一个非Activity的类中去感知Activity得生命周期<br>使用到Lifecycle组件</p>
+<h2 id="1-实现Lifecycle"><a href="#1-实现Lifecycle" class="headerlink" title="1.实现Lifecycle"></a>1.实现Lifecycle</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyObserver : LifecycleObserver &#123;</span><br><span class="line"></span><br><span class="line">    @OnLifecycleEvent(Lifecycle.Event.ON_START)</span><br><span class="line">    fun <span class="function"><span class="title">onStart</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)</span><br><span class="line">    fun <span class="function"><span class="title">onStop</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>加入对应kotlin的依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">&#x27;androidx.core:core-ktx:1.3.1&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="三、如果将Java代码转换为Kotlin代码"><a href="#三、如果将Java代码转换为Kotlin代码" class="headerlink" title="三、如果将Java代码转换为Kotlin代码"></a>三、如果将Java代码转换为Kotlin代码</h2><p>1.打开Android Studio<br>2.顶部导航拦 Code<br>3.Covert Java File to Kotlin File</p>
-<h2 id="四、Kotlin是怎么基于Java实现的"><a href="#四、Kotlin是怎么基于Java实现的" class="headerlink" title="四、Kotlin是怎么基于Java实现的"></a>四、Kotlin是怎么基于Java实现的</h2><p>1.打开Android Studio<br>2.顶部导航栏 Tools<br>3.Kotlin<br>4.Show Kotlin Bytecode<br>5.点击Decompile</p>
+
 
         </div>
 
@@ -251,10 +245,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/12/06/android-%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a>
+                <a class="prev" rel="prev" href="/2023/10/15/android-javatokotlin/">Java工程升级Kotlin</a>
             
             
-            <a class="next" rel="next" href="/2023/10/15/android-lifecycles/">Lifecycles</a>
+            <a class="next" rel="next" href="/2023/10/15/android-viewmodel/">ViewModel</a>
             
         </section>
 
