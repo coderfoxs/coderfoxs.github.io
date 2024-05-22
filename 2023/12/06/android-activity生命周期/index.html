@@ -222,7 +222,7 @@
 <p>onCreate() : 在Activity创建时调用，通常做一些初始化设置。<br>onStart()  : 在Activity可见时调用。<br>onResume() : 在Activity已可见，获取焦点开始于用户交互时调用。<br>onPause()  : 在当前Activity被其他Activity覆盖或锁屏时调用。<br>onStop()   : 在Activity对用户不可见时调用。<br>onDestroy(): 在Activity销毁时调用。<br>onRestart(): 在Activity从停止状态再次启动时调用。</p>
 <h2 id="Activity-横竖屏生命周期"><a href="#Activity-横竖屏生命周期" class="headerlink" title="Activity 横竖屏生命周期"></a>Activity 横竖屏生命周期</h2><p>横竖屏切换涉及到的是Activity的android:configChanges属性；<br>android:configChanges可以设置的属性：</p>
 <p>orientation: 消除横竖屏的影响<br>keyboardHidden: 消除键盘的影响<br>screenSize：   消除屏幕大小的影响</p>
-<p>切换横竖屏的生命周期如下：<br>onPause-&gt;onStop-&gt;onSabeInstanceState-&gt;onDestroy-&gt;onCreate-&gt;onStart-&gt;onRestoreInstanceState-&gt;onResume</p>
+<p>切换横竖屏的生命周期如下：<br>onPause-&gt;onStop-&gt;onSaveInstanceState-&gt;onDestroy-&gt;onCreate-&gt;onStart-&gt;onRestoreInstanceState-&gt;onResume</p>
 <p>注: 设置Activity的android:configChanges属性为orientation或者orientation|keyboardHidden或者不设置这个属性的时候，横竖屏切换会重新调用各个生命周期方法，切换横屏时会执行1次，切换竖屏时会执行1次。</p>
 <p>设置Activity的属性为android:configChanges=”orientation|keyboardHidden|screenSize”时，横竖屏切换不会重新调用各个生命周期的方法，只会执行onConfigurationChanged方法。</p>
 
